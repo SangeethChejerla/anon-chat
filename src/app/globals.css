@@ -3,19 +3,44 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --foreground-rgb: 229, 231, 235;
+  --background-rgb: 0, 0, 0;
+  --accent-color: 139, 92, 246;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-rgb));
+  min-height: 100vh;
+}
+
+.pulse-shadow {
+  animation: pulse 2s infinite;
+  box-shadow: 0 0 0 0 rgba(var(--accent-color), 0.7);
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(var(--accent-color), 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(var(--accent-color), 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(var(--accent-color), 0);
+  }
+}
+
+.message-fade-out {
+  animation: fadeOut 0.5s ease-in-out forwards;
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+.cloak-mode {
+  filter: blur(10px);
+  transition: filter 0.3s ease;
 }
